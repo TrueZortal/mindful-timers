@@ -1,0 +1,10 @@
+<%= form_with url: timers_path do |form| %>
+  <%= form.label :alert_type, "reminder to:"%>
+  <%= form.select :alert_type, ["Work standing up", "Stand up and stretch", "Meditate", "Urgently meditate", "Other"], selected: "Work standing up"%>
+  <%= form.label :activity_duration, "for "%>
+  <%= form.number_field :activity_duration %>
+  <%= form.label :initial_value, " minutes in "%>
+  <%= form.number_field :initial_value %>
+  <%= form.label :initial_value, " minutes"%>
+  <%= form.submit "start timer"%>
+<% end %>

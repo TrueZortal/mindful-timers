@@ -1,0 +1,10 @@
+//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
+//= link get_up.mp3
+//= link work_standing.mp3
+//= link meditate.mp3
+//= link urgently_meditate.mp3
+//= link urgently_meditate.mp3
+//= link workworkgottawork.mp3

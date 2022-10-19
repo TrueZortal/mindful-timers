@@ -1,0 +1,12 @@
+<div id = "timer_<%= timer.id %>" data-controller="timer" data-timer-timer-value="<%= timer.initial_value %>"
+data-timer-id-value="<%=timer.id%>" data-timer-sound-value=<%= p timer.alert_type.gsub(/ /, "-") %>
+data-timer-duration-value="<%=timer.activity_duration%>">
+  <div id = "progress_bar_<%= timer.id %>" class = "progress_bar" style = <%= Timer.color_picker %>>
+    <p class = "alert_text">
+      <p data-timer-target="display"></p>
+    </p>
+  </div>
+  <%= link_to "Delete",
+              "timers/#{timer.id}",
+              data: { "turbo-method": :delete }  %>
+</div>
