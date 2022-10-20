@@ -5,84 +5,183 @@ export default class extends Controller {
   static values = { timer: Number, id: Number, sound: String, duration: Number }
 
   connect() {
-    this.timerStart(this.timerValue)
+    this.boundRestart = this.restart.bind(this)
+    this.boundPause = this.pause.bind(this)
+    this.paused = false
+    this.pausedTimer = 0
+    this.waitTime = parseInt(this.timerValue) * 60
+    this.activeTime = parseInt(this.durationValue) * 60
+    this.resetValues()
+    this.timerStart()
+  }
+
+  restart() {
+    let snd = document.getElementById("resumed")
+    if (this.paused && this.active) {
+      snd.play()
+      this.activityInProgress(this.currentActivityTimer)
+    } else if (this.paused) {
+      snd.play()
+      this.timerStart()
+    } else {
+      this.timerStart()
+    }
+  }
+
+  pause() {
+    this.paused = true
+  }
+
+  handleUnpausing() {
+    if (this.paused && this.active) {
+      this.currentActivityTimer = this.pausedTimer
+      this.pausedTimer = 0
+      this.paused = false
+    } else if (this.paused) {
+      this.currentWaitTimer = this.pausedTimer
+      this.pausedTimer = 0
+      this.paused = false
+    }
   }
 
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async timerStart(time_set) {
-    const time = parseInt(time_set)
-    let time_in_seconds = time * 60
+  async timerStart() {
+    this.handleUnpausing()
+    this.active = false
+
+    let time_in_seconds = this.currentWaitTimer
+
+    const start_ms = Date.now()
+    const start_time = new Date(start_ms)
+    const end_time = new Date(start_ms + time_in_seconds * 1000 )
+
+    console.log("starting at:", start_time)
+    console.log("planned ending at:", end_time)
+
+    let element = `progress_bar_${this.idValue}`
     let snd = document.getElementById(this.soundValue.toLowerCase().replace(/-/g, ''))
-    let bar = document.getElementById(`progress_bar_${this.idValue}`)
-    bar.removeEventListener("click", this.boundRestart)
-    for (let i = time_in_seconds; i > 0; i--) {
-      let remaining_seconds = i -1
-      this.progressBar(bar, time_in_seconds, remaining_seconds, false)
-      if (remaining_seconds == 0) {
-        snd.play();
-        this.activityInProgress(this.durationValue)
-      }
-      this.displayTarget.textContent = this.convertSecondsToTime(remaining_seconds, this.soundValue)
-      await this.sleep(1000)
-    }
-  }
+    let bar = document.getElementById(element)
 
-  restart() {
-    this.timerStart(this.timerValue)
-  }
+    this.timerInProgress(bar)
 
-  async activityInProgress(time_of_activity) {
-    const time = parseInt(time_of_activity)
-    let time_in_seconds = time * 60
-    let snd = document.getElementById("workwork")
-    let bar = document.getElementById(`progress_bar_${this.idValue}`)
-    let msg = "being awesome and mindful! -".concat(' ', this.soundValue.replace(/-/g, ' '))
-    bar.removeEventListener("click", this.restart.bind(this))
     for (let i = time_in_seconds; i > 0; i--) {
-      let remaining_seconds = i -1
-      this.progressBar(bar, time_in_seconds, remaining_seconds, true)
-      if (remaining_seconds == 0) {
-        snd.play();
-        this.displayTarget.textContent = "Click to restart!"
-        this.boundRestart = this.restart.bind(this)
-        bar.addEventListener("click", this.boundRestart)
-      } else {
-        this.displayTarget.textContent = this.convertSecondsToTime(remaining_seconds, msg)
+      if (!!document.getElementById(element)) {
+        let current_time = new Date(Date.now())
+        let absolute_diff = parseInt(Math.abs((end_time.getTime() - current_time.getTime()) / 1000))
+        let remaining_seconds = i - 1
+
+        if (absolute_diff < remaining_seconds) {
+          remaining_seconds = absolute_diff
+        }
+
+        if (this.paused) {
+          let snd = document.getElementById("paused")
+          snd.play();
+          this.timerStopped(bar)
+          this.pausedTimer = absolute_diff
+          this.displayTarget.textContent = "Timer paused - click to resume!"
+          break
+        }
+
+        this.progressBar(bar, this.waitTime, remaining_seconds, false)
+        if (current_time >= end_time || remaining_seconds == 0) {
+          snd.play();
+          this.activityInProgress()
+          break
+        }
+        this.displayTarget.textContent = this.convertSecondsToTime(remaining_seconds, this.soundValue.replace(/-/g, ' '))
         await this.sleep(1000)
       }
     }
   }
 
-  convertSecondsToTime(seconds, prefix) {
-    let time_in_seconds = seconds
-    if (time_in_seconds == 0) {
 
-    } else {
-      if ( time_in_seconds < 10) {
-        return `${prefix} 00:0${time_in_seconds}`
-      } else if (time_in_seconds < 59) {
-        return `${prefix} 00:${time_in_seconds}`
-      } else if (time_in_seconds < 600) {
-        let orphan_seconds = time_in_seconds % 60
-          if (orphan_seconds < 10) {
-            return `${prefix} 0${(time_in_seconds - orphan_seconds)/60}:0${orphan_seconds}`
-          } else {
-            return `${prefix} 0${(time_in_seconds - orphan_seconds)/60}:${orphan_seconds}`
-          }
-      } else {
-        // if (time_in_seconds < 3600)
-        let orphan_seconds = time_in_seconds % 60
-        if (orphan_seconds < 10) {
-          return `${prefix} ${(time_in_seconds - orphan_seconds)/60}:0${orphan_seconds}`
+
+  async activityInProgress() {
+    this.handleUnpausing()
+    this.active = true
+
+    let time_in_seconds = this.currentActivityTimer
+
+    const start_ms = Date.now()
+    const start_time = new Date(start_ms)
+    const end_time = new Date(start_ms + time_in_seconds * 1000 )
+
+    console.log("starting task at:", start_time)
+    console.log("planned task ending at:", end_time)
+
+    let element = `progress_bar_${this.idValue}`
+    let snd = document.getElementById("workwork")
+    let bar = document.getElementById(element)
+    let msg = "being awesome and mindful! -".concat(' ', this.soundValue.replace(/-/g, ' '))
+
+    this.timerInProgress(bar)
+
+    for (let i = time_in_seconds; i > 0; i--) {
+      if (!!document.getElementById(element)) {
+        let current_time = new Date(Date.now())
+        let absolute_diff = parseInt(Math.abs((end_time.getTime() - current_time.getTime()) / 1000))
+        let remaining_seconds = i - 1
+
+        if (absolute_diff < remaining_seconds) {
+          remaining_seconds = absolute_diff
+        }
+
+        if (this.paused) {
+          let snd = document.getElementById("paused")
+          snd.play();
+          this.timerStopped(bar)
+          this.pausedTimer = absolute_diff
+          this.displayTarget.textContent = "Timer paused - click to resume!"
+          break
+        }
+
+        this.progressBar(bar, this.activeTime, remaining_seconds, true)
+
+        if (current_time >= end_time || remaining_seconds == 0) {
+          console.log("finished at:", new Date(Date.now()))
+          snd.play();
+          this.timerStopped(bar)
+          this.resetValues()
+          this.displayTarget.textContent = "Click to restart!"
+          break
         } else {
-          return `${prefix} ${(time_in_seconds - orphan_seconds)/60}:${orphan_seconds}`
+          this.displayTarget.textContent = this.convertSecondsToTime(remaining_seconds, msg)
+          await this.sleep(1000)
         }
       }
     }
   }
+
+  resetValues() {
+    this.active = false
+    this.currentActivityTimer = this.activeTime
+    this.currentWaitTimer = this.waitTime
+  }
+
+  timerInProgress(bar_element) {
+    bar_element.removeEventListener("click", this.boundRestart)
+    bar_element.addEventListener("click", this.boundPause)
+  }
+
+  timerStopped(bar_element) {
+    bar_element.removeEventListener("click", this.boundPause)
+    bar_element.addEventListener("click", this.boundRestart)
+  }
+
+  convertSecondsToTime(seconds, prefix) {
+    if (seconds > 0) {
+      let time = new Date(seconds * 1000).toISOString()
+        if (seconds > 3600) {
+          return `${prefix}, ${time.substring(11,19)}`
+        } else  {
+          return `${prefix}, ${time.substring(14,19)}`
+        }
+      }
+    }
 
   progressBar(bar_object,time, current_time, reversed) {
     if (reversed) {

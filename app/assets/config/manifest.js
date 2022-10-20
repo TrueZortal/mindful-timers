@@ -8,3 +8,5 @@
 //= link urgently_meditate.mp3
 //= link urgently_meditate.mp3
 //= link workworkgottawork.mp3
+//= link paused.mp3
+//= link resumed.mp3

@@ -2,9 +2,9 @@
   <%= form.label :alert_type, "reminder to:"%>
   <%= form.select :alert_type, ["Work standing up", "Stand up and stretch", "Meditate", "Urgently meditate", "Other"], selected: "Work standing up"%>
   <%= form.label :activity_duration, "for "%>
-  <%= form.number_field :activity_duration %>
+  <%= form.number_field :activity_duration, min: 1, max: 1440 %>
   <%= form.label :initial_value, " minutes in "%>
-  <%= form.number_field :initial_value %>
+  <%= form.number_field :initial_value, min: 1, max: 1440  %>
   <%= form.label :initial_value, " minutes"%>
   <%= form.submit "start timer"%>
 <% end %>

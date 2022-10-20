@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+mindful-timers.io // mindful-timers.com
 
-Things you may want to cover:
+Simplistic timers for mindful work and easily repeatable reminders to stretch, stand up or anything else you might need reminding for.
 
-* Ruby version
+Current version: Alpha
 
-* System dependencies
+Latest commit:
+- timer_controller partial rewrite
+- Timer drift has been adressed
+- Timers are now pausable to the second
 
-* Configuration
 
-* Database creation
+In-progress:
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Closing the asynchronous process on timer deletion
