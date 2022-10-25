@@ -7,12 +7,9 @@ Simplistic timers for mindful work and easily repeatable reminders to stretch, s
 Current version: Alpha
 
 Latest commit:
-- timer_controller partial rewrite
-- Timer drift has been adressed
-- Timers are now pausable to the second
-
+- Added restart timer button for restarting before timer end
+- Added volume control and updated sounds
 
 In-progress:
 
 
-- Closing the asynchronous process on timer deletion

@@ -8,6 +8,7 @@ export default class extends Controller {
     this.boundRestart = this.restart.bind(this)
     this.boundPause = this.pause.bind(this)
     this.paused = false
+    this.resetFromButton = false
     this.pausedTimer = 0
     this.waitTime = parseInt(this.timerValue) * 60
     this.activeTime = parseInt(this.durationValue) * 60
@@ -15,13 +16,22 @@ export default class extends Controller {
     this.timerStart()
   }
 
+  restartFromDefault() {
+    if (this.paused) {
+      this.resetValues()
+      this.timerStart()
+      }
+    this.resetFromButton = true
+   }
+
+
   restart() {
     let snd = document.getElementById("resumed")
     if (this.paused && this.active) {
-      snd.play()
+      this.checkVolumeAndPlay(snd)
       this.activityInProgress(this.currentActivityTimer)
     } else if (this.paused) {
-      snd.play()
+      this.checkVolumeAndPlay(snd)
       this.timerStart()
     } else {
       this.timerStart()
@@ -77,9 +87,13 @@ export default class extends Controller {
           remaining_seconds = absolute_diff
         }
 
+        if (this.resetFromButton) {
+          break
+        }
+
         if (this.paused) {
           let snd = document.getElementById("paused")
-          snd.play();
+          this.checkVolumeAndPlay(snd)
           this.timerStopped(bar)
           this.pausedTimer = absolute_diff
           this.displayTarget.textContent = "Timer paused - click to resume!"
@@ -88,17 +102,25 @@ export default class extends Controller {
 
         this.progressBar(bar, this.waitTime, remaining_seconds, false)
         if (current_time >= end_time || remaining_seconds == 0) {
-          snd.play();
+          this.checkVolumeAndPlay(snd)
           this.activityInProgress()
           break
         }
         this.displayTarget.textContent = this.convertSecondsToTime(remaining_seconds, this.soundValue.replace(/-/g, ' '))
         await this.sleep(1000)
       }
+
+    }
+    if (this.resetFromButton) {
+      this.resetValues()
+      this.timerStart()
     }
   }
 
-
+  checkVolumeAndPlay(sound) {
+    sound.volume = (parseInt(document.getElementById("myRange").value) / 100)
+    sound.play();
+  }
 
   async activityInProgress() {
     this.handleUnpausing()
@@ -130,9 +152,13 @@ export default class extends Controller {
           remaining_seconds = absolute_diff
         }
 
+        if (this.resetFromButton) {
+          break
+        }
+
         if (this.paused) {
           let snd = document.getElementById("paused")
-          snd.play();
+          this.checkVolumeAndPlay(snd)
           this.timerStopped(bar)
           this.pausedTimer = absolute_diff
           this.displayTarget.textContent = "Timer paused - click to resume!"
@@ -143,7 +169,7 @@ export default class extends Controller {
 
         if (current_time >= end_time || remaining_seconds == 0) {
           console.log("finished at:", new Date(Date.now()))
-          snd.play();
+          this.checkVolumeAndPlay(snd)
           this.timerStopped(bar)
           this.resetValues()
           this.displayTarget.textContent = "Click to restart!"
@@ -154,9 +180,14 @@ export default class extends Controller {
         }
       }
     }
+    if (this.resetFromButton) {
+      this.resetValues()
+      this.timerStart()
+    }
   }
 
   resetValues() {
+    this.resetFromButton = false
     this.active = false
     this.currentActivityTimer = this.activeTime
     this.currentWaitTimer = this.waitTime

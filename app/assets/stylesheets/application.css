@@ -31,3 +31,17 @@
 .alert_text {
   display: flex;
 }
+
+.buttons {
+  display: flex;
+}
+
+.top {
+  display: flex;
+}
+
+p {
+  font-size: small;
+  margin-top: 0px;
+  margin-left: 15px;
+}
