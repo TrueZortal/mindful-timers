@@ -7,8 +7,7 @@ Simplistic timers for mindful work and easily repeatable reminders to stretch, s
 Current version: Alpha
 
 Latest commit:
-- Added restart timer button for restarting before timer end
-- Added volume control and updated sounds
+- moved from button_to to link_to temporarily as button_to broke turbo streams
 
 In-progress:
 
