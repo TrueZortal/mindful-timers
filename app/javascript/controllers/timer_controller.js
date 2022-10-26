@@ -101,7 +101,7 @@ export default class extends Controller {
         }
 
         this.progressBar(bar, this.waitTime, remaining_seconds, false)
-        if (current_time >= end_time || remaining_seconds == 0) {
+        if (current_time >= end_time || remaining_seconds == 0 || this.moveToInProgress) {
           this.checkVolumeAndPlay(snd)
           this.activityInProgress()
           break
@@ -120,6 +120,10 @@ export default class extends Controller {
   checkVolumeAndPlay(sound) {
     sound.volume = (parseInt(document.getElementById("myRange").value) / 100)
     sound.play();
+  }
+
+  moveToActivity() {
+    this.moveToInProgress = true
   }
 
   async activityInProgress() {
@@ -189,6 +193,7 @@ export default class extends Controller {
   resetValues() {
     this.resetFromButton = false
     this.active = false
+    this.moveToInProgress = false
     this.currentActivityTimer = this.activeTime
     this.currentWaitTimer = this.waitTime
   }

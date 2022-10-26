@@ -7,7 +7,8 @@ Simplistic timers for mindful work and easily repeatable reminders to stretch, s
 Current version: Alpha
 
 Latest commit:
-- moved from button_to to link_to temporarily as button_to broke turbo streams
+- added restart button to timer
+- added skip to activity button
 
 In-progress:
 
