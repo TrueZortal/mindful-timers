@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
  .progress_bar {
   min-width: 250px;
   height: 40px;
@@ -34,10 +35,12 @@
 
 .buttons {
   display: flex;
+  justify-content: center;
 }
 
 .top {
   display: flex;
+  justify-content: center;
 }
 
 p {
