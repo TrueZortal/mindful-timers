@@ -7,11 +7,12 @@ data-timer-duration-value="<%=timer.activity_duration%>">
     </p>
   </div>
   <div class = "buttons">
-    <%= link_to "Delete timer",
-                "timers/#{timer.id}",
-                data: { "turbo-method": :delete },
-                class:"button"  %>
-    <button class =  "button" data-action="click->timer#restartFromDefault">Restart timer</button>
+    <button class = button_special>
+      <%= link_to "Delete timer",
+                  "timers/#{timer.id}",
+                  data: { "turbo-method": :delete }%>
+    </button>
+    <button class =  "button_special" data-action="click->timer#restartFromDefault">Restart timer</button>
     <button class =  "button_special" data-action="click->timer#moveToActivity">Start activity timer</button>
   </div>
 </div>

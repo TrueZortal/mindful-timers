@@ -38,12 +38,24 @@
   justify-content: center;
 }
 
+.button_special {
+  background-color: rgb(71, 179, 179);
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 8px;
+}
+
 .top {
   display: flex;
   justify-content: center;
 }
 
 p {
+  text-decoration: none;
   font-size: small;
   margin-top: 0px;
   margin-left: 15px;
