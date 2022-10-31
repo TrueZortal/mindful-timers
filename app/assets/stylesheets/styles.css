@@ -1,0 +1,166 @@
+@media only screen and (max-width: 299px) {
+
+  select {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .top {
+    /* margin-top: 15%; */
+  }
+
+  .slider_thing {
+    scale: 0.6;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+
+
+  input {
+    width: 100%;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  .top {
+    /* margin-top: 10%; */
+  }
+
+  .slider_thing {
+    scale: 0.6;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .logo_text {
+    text-align: center;
+    font-size: large;
+  }
+
+  .top {
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .slider_thing {
+    scale: 0.8;
+  }
+}
+
+.button_special_submit {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  background-color: rgb(252, 241, 224);
+  border: none;
+  color: rgb(126, 25, 25);
+  padding: 5px 5px;
+  cursor: pointer;
+  font-size: small;
+  transition: 250ms;
+}
+
+.logo_text {
+
+}
+
+body {
+  background-color: rgb(252, 241, 224);
+}
+
+.volume_bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.slider_thing {
+  display: flex;
+
+}
+
+.form_text {
+  color: rgb(126, 25, 25);
+  font-size: small;
+  text-decoration: none;
+}
+
+.progress_bar {
+  min-width: 250px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: medium;
+  font-weight: bold;
+  transition: 500ms;
+  /* margin: auto; */
+
+}
+
+.alert_text {
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.timer {
+  opacity: 0.9;
+  transition: 250ms;
+}
+
+.timer:hover {
+  opacity: 1;
+  transition: 250ms;
+}
+
+.button_special {
+  background-color: rgb(252, 241, 224);
+  border: none;
+  color: rgb(126, 25, 25);
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 8px;
+  transition: 250ms;
+}
+
+.button_special:hover {
+  transition: 250ms;
+  background-color: rgb(238, 202, 148);
+}
+
+
+
+.button_special_submit:hover {
+  transition: 250ms;
+  background-color: rgb(238, 202, 148);
+}
+
+.top {
+  display: flex;
+}
+
+p {
+  color: rgb(126, 25, 25);
+  margin-left: 2%;
+  margin-right: 2%;
+  text-decoration: none;
+  font-size: small;
+}
+
+a {
+  color: rgb(126, 25, 25);
+  text-decoration: none;
+}

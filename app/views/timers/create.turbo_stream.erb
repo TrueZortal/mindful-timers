@@ -1,1 +1,1 @@
-<%= turbo_stream.append "timer_block", partial: "timers/timer", locals: { timer: @timer }%>
+<%= turbo_stream.prepend "timer_block", partial: "timers/timer", locals: { timer: @timer }%>
