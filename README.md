@@ -7,8 +7,7 @@ Simplistic timers for mindful work and easily repeatable reminders to stretch, s
 Current version: 1.0.0
 
 Latest commit:
- - Tagged initial release
- - Added PayPal donate button to offset upkeep costs
+ - Fixed a display bug
 
 In-progress:
 
