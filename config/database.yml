@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: mindfultimers_production
-  username: ENV.fetch('TIMERS_DEPLOY_USER')
-  password: ENV['TIMERRPW']
+  username: <%=ENV['TIMERS_DEPLOY_USER']%>
+  password: <%=ENV['TIMERRPW']%>
