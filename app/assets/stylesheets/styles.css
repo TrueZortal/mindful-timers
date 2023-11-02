@@ -122,7 +122,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: medium;
+  font-size: 24px;
   font-weight: bold;
   transition: 500ms
 }
@@ -133,6 +133,11 @@ body {
 
 .alert_text {
   display: flex;
+}
+
+.progress_bar_text {
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .buttons {
@@ -163,7 +168,7 @@ body {
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  font-size: 8px;
+  font-size: 24px;
   transition: 250ms;
 }
 

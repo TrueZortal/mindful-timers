@@ -3,7 +3,7 @@ data-timer-id-value="<%=timer.id%>" data-timer-sound-value=<%= p timer.alert_typ
 data-timer-duration-value="<%=timer.activity_duration%>">
   <div id = "progress_bar_<%= timer.id %>" class = "progress_bar" style = <%= Timer.color_picker %>>
     <p class = "alert_text">
-      <p data-timer-target="display"></p>
+      <p class = "progress_bar_text" data-timer-target="display"></p>
     </p>
   </div>
   <div class = "buttons">
