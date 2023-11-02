@@ -6,13 +6,13 @@
   <audio id="resumed" src="<%= asset_path("resumed.mp3") %>" preload="auto"></audio>
   <audio id="other" src="<%= asset_path("other.mp3") %>" preload="auto"></audio>
 <div class = "personal_view">
-  <div class = "column_one">
+  <div class = "column_one" data-controller = "calendar">
   <div class="slider_thing_personal">
     <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
   </div>
-  <div id="ww_4e49865d05acb" v='1.3' loc='id' a='{"t":"horizontal","lang":"en","sl_lpl":1,"ids":["wl7667"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#388E3C","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#FFFFFF","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>More forecasts: <a href="https://sharpweather.com/pl/warsaw/" id="ww_4e49865d05acb_u" target="_blank">Warszawa prognoza pogody</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_4e49865d05acb"></script>
+    <iframe id = "weather_frame" width="450" height="400" src="https://embed.windy.com/embed2.html?lat=51.171&lon=16.121&detailLat=51.210&detailLon=16.160&width=450&height=400&zoom=11&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
   <div class = "calendar_wrapper">
-    <iframe class = "calendar" src="https://calendar.google.com/calendar/embed?height=400&wkst=2&bgcolor=%230B8043&ctz=Europe%2FWarsaw&mode=AGENDA&showTitle=0&showPrint=0&showCalendars=1&showTz=0&showTabs=1&src=bXRzYmNrQGdtYWlsLmNvbQ&src=YjhhNWRkOTg1OTc2ODM0NjBlNDI2NDEwMzk0MDBhMzE3MmJmMDVmZTYwYzExY2NhYzlmYzU4YTJkMjA1NjMxY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D50000&color=%2333B679" style="border:solid 1px #777" width="450" height="400" frameborder="0" scrolling="no"></iframe>
+    <iframe class = "calendar" id = "calendar_frame" src="https://calendar.google.com/calendar/embed?height=400&wkst=2&bgcolor=%230B8043&ctz=Europe%2FWarsaw&mode=AGENDA&showTitle=0&showPrint=0&showCalendars=1&showTz=0&showTabs=1&src=bXRzYmNrQGdtYWlsLmNvbQ&src=YjhhNWRkOTg1OTc2ODM0NjBlNDI2NDEwMzk0MDBhMzE3MmJmMDVmZTYwYzExY2NhYzlmYzU4YTJkMjA1NjMxY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D50000&color=%2333B679" style="border:solid 1px #777" width="450" height="300" frameborder="0" scrolling="no"></iframe>
   </div>
 </div>
   <div class = "column_two">
