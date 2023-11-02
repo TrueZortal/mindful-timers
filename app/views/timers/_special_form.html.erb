@@ -1,0 +1,12 @@
+<div class = "timer_form">
+  <%= form_with url: timers_path do |form| %>
+    <%= form.label :alert_type, "reminder to:", class: "form_text_s"%>
+    <%= form.select :alert_type, ["Work standing up", "Stand up and stretch", "Meditate", "Other"], selected: "Work standing up"%>
+    <%= form.label :activity_duration, "for ", class: "form_text_s"%>
+    <%= form.number_field :activity_duration, style: "height:30px;width:30px;font-size:24px;",min: 1, max: 1440, value: 5 %>
+    <%= form.label :initial_value, " minutes in ", class: "form_text_s"%>
+    <%= form.number_field :initial_value, style: "height:30px;width:30px;font-size:24px;", min: 1, max: 1440, value: 30 %>
+    <%= form.label :initial_value, " minutes", class: "form_text_s"%>
+    <%= form.submit "start timer",class: "button_special_submit_p"%>
+  <% end %>
+</div>

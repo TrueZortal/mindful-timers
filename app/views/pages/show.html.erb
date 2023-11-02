@@ -5,14 +5,12 @@
   <audio id="paused" src="<%= asset_path("paused.mp3") %>" preload="auto"></audio>
   <audio id="resumed" src="<%= asset_path("resumed.mp3") %>" preload="auto"></audio>
   <audio id="other" src="<%= asset_path("other.mp3") %>" preload="auto"></audio>
-<div class = "volume_bar">
-  <div class="slider_thing">
-    <p> Volume: </p>
-    <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
-  </div>
+<div class = "logo">
+  <p class = "logo_text"> Mindful timers</p>
 </div>
 <div class = "top">
 <%= render partial: "timers/form" %>
 </div>
 <br>
 <div id="timer_block"></div>
+<%= render partial: "shared/footer"%>

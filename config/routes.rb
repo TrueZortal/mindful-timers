@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#show"
+  get 'personal', to: 'pages#personalview'
   resources :timers
 end
