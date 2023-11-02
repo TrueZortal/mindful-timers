@@ -115,6 +115,60 @@ body {
   text-decoration: bold;
 }
 
+.calendar_wrapper
+{
+    width: 450px;
+    height: 410px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.calendar
+{
+    width: 450px;
+    height: 400px;
+    border: 0;
+
+    -ms-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.weather_wrapper
+{
+    width: 450px;
+    height: 410px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.weather
+{
+    width: 460px;
+    height: 592px;
+    border: 0;
+
+    -ms-transform: scaleY(0.66);
+    -moz-transform: scaleY(0.66);
+    -o-transform: scaleY(0.66);
+    -webkit-transform: scaleY(0.66);
+    transform: scaleY(0.66);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
 .progress_bar {
   min-width: 250px;
   height: 100px;
@@ -157,7 +211,7 @@ body {
 
 .slider_thing_personal {
   display: flex;
-  scale: 1.5;
+  /* scale: 1.5; */
 }
 
 .button_special {
