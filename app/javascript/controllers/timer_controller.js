@@ -142,7 +142,7 @@ export default class extends Controller {
     let element = `progress_bar_${this.idValue}`
     let snd = document.getElementById("workwork")
     let bar = document.getElementById(element)
-    let msg = "being awesome and mindful! -".concat(' ', this.soundValue.replace(/-/g, ' '))
+    let msg = "In progress!".concat(' ', this.soundValue.replace(/-/g, ' '))
 
     this.timerInProgress(bar)
 
